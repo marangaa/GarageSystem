@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -19,29 +20,45 @@ namespace GarageSystem
         {
             string username = uname.Text;
             string Password = password.Text;
-            //declare data table
-            DataTable dt = new DataTable();
-            //create an instance of dataset
-            onlineTableAdapters.UsersTableAdapter logs = new onlineTableAdapters.UsersTableAdapter();
-            //assign to data table results of adapter
-            dt = logs.GetData(username, Password);
 
-            if (dt.Rows.Count > 0)
-            {
-                //redirect user to a dashboard
-                Response.Redirect("~/index.html");
-            }
-            else if (username == "admin" && Password == "admin1234")
-            {
-                //redirect admin to admin page
-                Response.Redirect("~/index.html");
-            }
-            else
-            {
-                //display error message
-                //ErrorMessage.Text = "Invalid username or password.";
-            }
+            // Define the connection string
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\rchdm\\Desktop\\307project\\GarageSystem\\App_Data\\online.mdf;Integrated Security=True;";
 
+            // SQL query to check login details
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username AND Password = @Password";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Set the parameter values
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", Password);
+
+                    // Open the connection
+                    connection.Open();
+
+                    // Execute the query
+                    int count = (int)command.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        // Redirect user to a dashboard
+                        Response.Redirect("~/index.html");
+                    }
+                    else if (username == "admin" && Password == "admin1234")
+                    {
+                        // Redirect admin to admin page
+                        Response.Redirect("~/index.html");
+                    }
+                    else
+                    {
+                        // Display error message
+                        // ErrorMessage.Text = "Invalid username or password.";
+                    }
+
+                }
+            }
         }
     }
 }

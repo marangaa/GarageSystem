@@ -12,7 +12,8 @@ namespace GarageSystem
 
         public static void DbCon()
         {
-            string conString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"E:\\Klo books\\Garage\\GarageSystem\\App_Data\\online.mdf\";Integrated Security=True";
+            string conString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\rchdm\\Desktop\\307project\\GarageSystem\\App_Data\\online.mdf;Integrated Security=True";
+
             con = new SqlConnection(conString);
 
             if (con.State == System.Data.ConnectionState.Open)
