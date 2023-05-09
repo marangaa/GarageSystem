@@ -44,17 +44,11 @@ namespace GarageSystem
                     if (count > 0)
                     {
                         // Redirect user to a dashboard
-                        Response.Redirect("~/index.html");
-                    }
-                    else if (username == "admin" && Password == "admin1234")
-                    {
-                        // Redirect admin to admin page
-                        Response.Redirect("~/index.html");
+                        Response.Redirect("~/booking.aspx");
                     }
                     else
                     {
-                        // Display error message
-                        // ErrorMessage.Text = "Invalid username or password.";
+                        ErrorMessage.Text = "invalid username or pasword";
                     }
 
                 }

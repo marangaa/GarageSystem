@@ -1,10 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="GarageSystem.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="adminlogin.aspx.cs" Inherits="GarageSystem.adminlogin" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Login</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" type="text/css" href="logins.css" />
 </head>
 <body>
@@ -21,21 +20,20 @@
               <h2>Ger's Garage</h2>
             </a>
           </div>
-          <h3 class="title">Login</h3>
+          <h3 class="title">Admin Login</h3>
           <div class="label-float">
-            <asp:TextBox ID="uname" runat="server" placeholder="Username"></asp:TextBox>
+            <asp:TextBox ID="txtusername" runat="server" placeholder="Username"></asp:TextBox>
           </div>
 
           <div class="label-float">
-            <asp:TextBox ID="password" runat="server" placeholder="Password"></asp:TextBox>
+            <asp:TextBox ID="txtpassword" runat="server" placeholder="Password"></asp:TextBox>
             <div class="errormsg" id="errorlogin"></div>
           </div>
           <div class="justify-center">
-            <asp:Button ID="LgnBtn" runat="server" Text="Continue" OnClick="LgnBtn_Click" />
-            <h4>Don't have an account? <a href="./signup.aspx">Sign up</a>.</h4>
-            <asp:Label ID="ErrorMessage" runat="server" ForeColor="Red"></asp:Label>
+            <asp:Button ID="btnlogin" runat="server" Text="Login" OnClick="btnlogin_Click" />
+            <asp:Label ID="lblerror" runat="server" ForeColor="Red"></asp:Label>
           </div>
-    </div>
+        </div>
     </form>
 </body>
 </html>
